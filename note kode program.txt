@@ -1,0 +1,9 @@
+#membuang tipe layanan yang tidak mengandung layanan internet
+values = ('cloud|aio|manage|bronze|gold|comntez|iconnet|tenant|desa|laptop|silver|platinum|delisting|premium|multimedia|content|-|comnetz|scada|ipv4')
+datatransaksi = datatransaksi[~datatransaksi['Layanan'].str.contains(values)]
+
+LayananType = datatransaksi[(datatransaksi.Layanan.value_counts().head(30) < 10)]
+datatransaksi.drop(LayananType , inplace=True)
+x = datatransaksi.Layanan.value_counts().head(30)
+x = (datatransaksi['Layanan'].count())
+print(x)
